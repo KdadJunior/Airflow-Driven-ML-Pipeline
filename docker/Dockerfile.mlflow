@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+ENV PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY ../pyproject.toml /app/
+RUN pip install poetry && \
+    poetry export --without-hashes -f requirements.txt -o requirements.txt && \
+    pip install -r requirements.txt && \
+    rm requirements.txt
+
+EXPOSE 5000
+ENTRYPOINT ["mlflow", "server", "--backend-store-uri", "sqlite:////opt/mlflow/mlflow.db", "--default-artifact-root", "s3://mlops-mlflow", "--host", "0.0.0.0", "--port", "5000"]
+
+

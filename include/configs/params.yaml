@@ -1,0 +1,27 @@
+dataset:
+  name: stanfordnlp/imdb
+  ingest:
+    split: train
+    daily_sample_size: 5000
+    seed_offset: 42
+features:
+  text_column: text
+  label_column: label
+  tfidf_max_features: 20000
+  min_df: 5
+  max_df: 0.8
+training:
+  model_type: logistic_regression
+  test_size: 0.2
+  random_state: 123
+  class_weight: balanced
+promotion:
+  pr_auc_delta: 0.005
+  roc_auc_floor_delta: -0.002
+  baseline_pr_auc: 0.7
+monitoring:
+  drift_reference_days: 7
+  psi_warning_threshold: 0.2
+  psi_alert_threshold: 0.3
+
+
