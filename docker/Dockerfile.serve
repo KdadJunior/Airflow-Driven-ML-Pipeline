@@ -5,11 +5,12 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-COPY ../pyproject.toml /app/
-RUN pip install poetry && \
-    poetry export --without-hashes -f requirements.txt --output requirements.txt && \
-    pip install -r requirements.txt && \
-    rm requirements.txt
+RUN pip install --no-cache-dir \
+    mlflow==2.17.0 \
+    fastapi==0.115.0 \
+    uvicorn[standard]==0.30.6 \
+    prometheus-client==0.21.0 \
+    numpy
 
 COPY ../src/serve /app/serve
 COPY ../src/utils /app/utils

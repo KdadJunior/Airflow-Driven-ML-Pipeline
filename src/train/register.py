@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Dict
 
 import mlflow
-from mlflow.exceptions import RestException
+from mlflow.exceptions import RestException, MlflowException
 
 
 @dataclass
@@ -35,8 +35,15 @@ def evaluate_promotion(
     client = mlflow.MlflowClient()
     try:
         client.get_registered_model(model_name)
-    except RestException:
-        client.create_registered_model(model_name)
+    except (RestException, MlflowException) as e:
+        # Model doesn't exist, create it
+        # Check if it's a "not found" error
+        error_msg = str(e).lower()
+        if "not found" in error_msg or "does not exist" in error_msg:
+            client.create_registered_model(model_name)
+        else:
+            # Re-raise if it's a different error
+            raise
 
     production_metrics = fetch_production_metrics(model_name)
 

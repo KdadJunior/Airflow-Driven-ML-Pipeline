@@ -21,6 +21,8 @@ class IngestConfig:
 def deterministic_sample_indices(total_size: int, ds: str, sample_size: int, seed_offset: int) -> list[int]:
     seed_bytes = hashlib.sha256(f"{ds}-{seed_offset}".encode("utf-8")).digest()
     seed_int = int.from_bytes(seed_bytes, byteorder="big")
+    # Constrain seed to valid range for pandas random_state (0 to 2^32 - 1)
+    seed_int = seed_int % (2**32)
     rng = pd.Series(range(total_size)).sample(
         n=sample_size,
         random_state=seed_int,

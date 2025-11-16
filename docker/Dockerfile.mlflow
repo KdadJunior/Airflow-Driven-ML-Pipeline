@@ -10,11 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-COPY ../pyproject.toml /app/
-RUN pip install poetry && \
-    poetry export --without-hashes -f requirements.txt -o requirements.txt && \
-    pip install -r requirements.txt && \
-    rm requirements.txt
+RUN pip install --no-cache-dir \
+    mlflow==2.17.0 \
+    boto3==1.35.26 \
+    sqlalchemy==2.0.31
 
 EXPOSE 5000
 ENTRYPOINT ["mlflow", "server", "--backend-store-uri", "sqlite:////opt/mlflow/mlflow.db", "--default-artifact-root", "s3://mlops-mlflow", "--host", "0.0.0.0", "--port", "5000"]

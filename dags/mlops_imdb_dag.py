@@ -35,7 +35,6 @@ def load_config() -> Dict[str, Dict]:
     start_date=datetime(2025, 1, 1),
     catchup=True,
     max_active_runs=1,
-    sla=timedelta(minutes=45),
     default_args={"retries": 2, "retry_delay": timedelta(minutes=5)},
     tags=["mlops", "imdb"],
 )

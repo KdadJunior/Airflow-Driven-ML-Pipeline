@@ -50,7 +50,7 @@ See `ops/runbook.md` for operational procedures and `Makefile` for developer erg
 
 ## Getting Started
 
-1. Copy `env.example` to `.env` and set local secrets (MinIO keys, MLflow backend URI, Slack webhook).
+1. Copy `env.example` to `.env` (no secrets required - defaults work for local development).
 2. Run `make up` to start Docker Compose stack (Airflow, MLflow, MinIO, FastAPI, Prometheus, Grafana).
 3. Visit Airflow UI (`http://localhost:8080`), trigger `mlops_imdb` DAG, and inspect task outputs.
 4. Explore MLflow UI (`http://localhost:5001`), Grafana dashboards, and Evidently reports stored in MinIO.
