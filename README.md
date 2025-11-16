@@ -3,7 +3,7 @@
 This project implements an end-to-end, production-style MLOps pipeline orchestrated with Apache Airflow.  
 It ingests the [Hugging Face `stanfordnlp/imdb`](https://huggingface.co/datasets/stanfordnlp/imdb) sentiment dataset, validates it, engineers features, trains and evaluates models, promotes models via MLflow, deploys a FastAPI prediction service, and monitors drift and service health.
 
-<img width="1784" height="545" alt="image" src="https://github.com/user-attachments/assets/1558bc95-6b91-4a5a-84c4-b7b13ca79892" />
+<img width="1054" height="148" alt="image" src="https://github.com/user-attachments/assets/595ec46d-8789-46a7-a761-e35b38b60ca5" />
 
 
 ## Architecture Overview
