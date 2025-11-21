@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import warnings
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict
@@ -8,6 +9,10 @@ from typing import Dict
 import pandas as pd
 from evidently.metrics import ColumnDriftMetric
 from evidently.report import Report
+
+# Suppress deprecation warnings from evidently library
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="evidently")
+warnings.filterwarnings("ignore", message=".*scipy.linalg.basic.*")
 
 
 @dataclass

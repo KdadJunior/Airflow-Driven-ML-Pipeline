@@ -1,5 +1,13 @@
 from __future__ import annotations
 
+import warnings
+
+# Suppress deprecation warnings from third-party libraries BEFORE any imports
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", message=".*scipy.linalg.basic.*")
+warnings.filterwarnings("ignore", message=".*LinAlgError.*")
+warnings.filterwarnings("ignore", module="evidently")
+
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict
