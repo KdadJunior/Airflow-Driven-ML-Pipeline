@@ -55,6 +55,9 @@ See `ops/runbook.md` for operational procedures and `Makefile` for developer erg
 3. Visit Airflow UI (`http://localhost:8080`), trigger `mlops_imdb` DAG, and inspect task outputs.
 4. Explore MLflow UI (`http://localhost:5001`), Grafana dashboards, and Evidently reports stored in MinIO.
 
+<img width="1792" height="722" alt="image" src="https://github.com/user-attachments/assets/c548776a-78ad-41d2-a877-40e97608a6d8" />
+
+
 ## Status
 
 This repository scaffolds the full system and will be implemented in phases:
